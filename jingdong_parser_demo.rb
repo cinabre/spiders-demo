@@ -101,7 +101,8 @@ class JingdongParser < Spider
       record.title = product.css('.title a').base_text
       record.thumbnail = product.css('.pic a img').attr_text 'src'
       record.price = product.css('.price font').text
-      record.thumbnail = product.css('.title a').attr_text 'href'
+      record.src = product.css('.title a').attr_text 'href'
+      record.store = :jingdong
 
       records << record
     end
