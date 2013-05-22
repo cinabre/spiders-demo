@@ -6,7 +6,7 @@ require 'ostruct' # just for demo, inside of a db obj
 require 'pry-debugger' # for debug
 
 
-class JingdongParser < Spider
+class TMallParser < Spider
 
   def pre_loop
     channel_url = 'http://m.tmall.com/tmallCate.htm'
@@ -45,4 +45,4 @@ class JingdongParser < Spider
   end
 end
 
-JingdongParser.parse
+TMallParser.parse
