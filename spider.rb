@@ -54,6 +54,7 @@ class Spider
     instance = self.new
     instance.pre_loop
     instance.loop
+    # instance.each_thread_loop
     instance.post_loop
   end
 end
@@ -62,9 +63,5 @@ end
 class Nokogiri::XML::NodeSet
   def base_text
     children.map{|e|e.text if e.text?}.join
-  end
-
-  def attr_text attribute_name
-    attr(attribute_name).to_s
   end
 end

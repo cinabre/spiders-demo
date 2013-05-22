@@ -27,17 +27,17 @@ class JingdongParser < Spider
     
     Log.info "Parsing page `#{page_url}', Queue: #{link_queue.length}, Records: #{records.length}"
     next_page = doc.css('.page a')
-    link_queue << next_page.attr_text('href') if next_page.text.include? '下一页'
+    link_queue << next_page[0]['href'] if next_page.text.include? '下一页'
     
     products = doc.css('.pmc')
     Log.warn "Cannot parse page `#{page_url}'" if products.empty?
 
     products.each do |product|
       record = OpenStruct.new
-      record.title = product.css('.title a').base_text
-      record.thumbnail = product.css('.pic a img').attr_text 'src'
+      record.title = product.css('.title a').base_text.strip
+      record.thumbnail = product.css('.pic a img')[0]['src']
       record.price = product.css('.price font').text
-      record.src = product.css('.title a').attr_text 'href'
+      record.src = product.css('.title a')[0]['href']
       record.store = :jingdong
 
       records << record
